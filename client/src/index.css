@@ -1,0 +1,87 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.App {
+  width: clamp(35rem, 50%, 50rem);
+  margin: 3rem auto;
+}
+
+h1 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+button {
+  border-radius: .8rem;
+  border: 1px solid transparent;
+  padding: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.datos {
+  margin-block-start: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  box-shadow: 0 0 1rem #646cff;
+  border-radius: 1rem;
+  padding: 3rem;
+}
+
+.datos label {
+  width: 100%;
+  position: relative;
+}
+
+.datos label input {
+  padding: 1.3rem;
+  border-radius: .8rem;
+  width: 100%;
+  padding-left: 7rem;
+  font-size: 1.6rem;
+}
+
+.datos label span {
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  transition: all 0.3s ease;
+  font-size: 1.3rem;
+}
+
+.datos label input:focus+span {
+  top: -.5rem;
+  background: #242424;
+  padding: .5px 10px;
+  border-radius: .4rem;
+}
