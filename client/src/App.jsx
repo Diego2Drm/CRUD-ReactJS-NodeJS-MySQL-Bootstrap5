@@ -1,3 +1,4 @@
+import Axios from "axios"
 import { useState } from "react"
 
 function App() {
@@ -8,7 +9,15 @@ function App() {
   const [years, setYears] = useState(0);
 
   const addData = () => {
-    
+    Axios.post("http://localhost:3001/create", {
+      name: name,
+      age: age,
+      country: country,
+      job: job,
+      years: years,
+    }).then(()=> {
+      alert("Empleado Registrado!!")
+    });
   }
 
   return (
