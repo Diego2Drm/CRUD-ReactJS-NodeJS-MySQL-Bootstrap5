@@ -24,18 +24,28 @@ app.post("/create", (req, res) => {
   const years = req.body.years;
 
   // consulta y envio de los datos --> ?,?,? indica que le voy a enviar informacion 
-  db.query('INSERT INTO employees(name,age,country,job,years) VALUES(?,?,?,?,?)', [name,age,country,job,years],
-    (err,result) => {
-      if(err){
+  db.query('INSERT INTO employees(name,age,country,job,years) VALUES(?,?,?,?,?)', [name, age, country, job, years],
+    (err, result) => {
+      if (err) {
         console.log(err);
-      } else{
+      } else {
         res.send("Empleado registrado con éxito!!");
       }
     }
   )
 });
 
-
+// consultar la base de datos para mostrar 
+app.get("/employees", (req, res) => {
+  db.query('SELECT * FROM employees',
+    (err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.send(result);
+      }
+    });
+});
 
 app.listen(3001, () => {
   console.log("listen port 3001");
