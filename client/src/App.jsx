@@ -1,5 +1,7 @@
-import Axios from "axios"
-import { useState } from "react"
+import Axios from 'axios';
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { EmployeesTable } from "./components/EmployeesTable";
 
 function App() {
   const [name, setName] = useState('');
@@ -15,43 +17,84 @@ function App() {
       country: country,
       job: job,
       years: years,
-    }).then(()=> {
+    }).then(() => {
+      getData();
       alert("Empleado Registrado!!")
     });
   }
 
+  const [employeesLits, setEmployeesLits] = useState([]);
+
+  const getData = () => {
+    Axios.get("http://localhost:3001/employees").then(res => {
+      setEmployeesLits(res.data);
+    });
+  };
+
+  getData();
   return (
-    <section className='App'>
+    <section className='container p-3'>
       <h1>CRUD React + Noded + MySql</h1>
-      <div className='datos'>
-        <label>
-          <input type="text" onChange={(e) => setName(e.target.value)} />
-          <span>Name:</span>
-        </label>
+      <div className='card bg-success-subtle'>
+        <div className="card-header text-center">
+          <h2 className="text-danger">Gestion de empleados</h2>
+        </div>
+        <div className="card-body">
+          <label className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="bi bi-person-fill"></i>
+            </span>
+            <input type="text" className="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
 
-        <label>
-          <input type="text" onChange={(e) => setAge(e.target.value)} />
-          <span>Age:</span>
-        </label>
+          <label className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="bi bi-cake-fill"></i>
+            </span>
+            <input type="text" className="form-control" placeholder="Age" aria-label="Age" aria-describedby="basic-addon1"
+              onChange={(e) => setAge(e.target.value)}
+            />
+          </label>
 
-        <label>
-          <input type="text" onChange={(e) => setCountry(e.target.value)} />
-          <span>Country:</span>
-        </label>
+          <label className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="bi bi-flag-fill"></i>
+            </span>
+            <input type="text" className="form-control" placeholder="Country" aria-label="Country" aria-describedby="basic-addon1"
+              onChange={(e) => setCountry(e.target.value)}
+            />
+          </label>
 
-        <label>
-          <input type="text" onChange={(e) => setJob(e.target.value)} />
-          <span>Job:</span>
-        </label>
+          <label className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="bi bi-briefcase-fill"></i>
+            </span>
+            <input type="text" className="form-control" placeholder="job" aria-label="Job" aria-describedby="basic-addon1"
+              onChange={(e) => setJob(e.target.value)}
+            />
+          </label>
 
-        <label>
-          <input type="text" onChange={(e) => setYears(e.target.value)} />
-          <span>Years:</span>
-        </label>
+          <label className="input-group mb-3">
+            <span className="input-group-text" id="basic-addon1">
+              <i className="bi bi-clipboard-data-fill"></i>
+            </span>
+            <input type="text" className="form-control" placeholder="Experience" aria-label="Experience" aria-describedby="basic-addon1"
+              onChange={(e) => setYears(e.target.value)}
+            />
+          </label>
+        </div>
 
-
-        <button onClick={addData}>Registrar</button>
+        <div className="card-footer text-center">
+          <button onClick={addData} className="btn btn-success">
+            Registrar
+          </button>
+        </div>
       </div>
+
+      <EmployeesTable  employeesLits={employeesLits}/>
+
     </section>
   )
 }
