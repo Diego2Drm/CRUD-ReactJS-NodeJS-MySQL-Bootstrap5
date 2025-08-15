@@ -1,5 +1,5 @@
 
-const EmployeesTable = ({ employeesLits }) => {
+const EmployeesTable = ({ employeesLits, handleEdit }) => {
   return (
     <div className="">
       <table className="table table-striped-columns mt-5">
@@ -11,6 +11,7 @@ const EmployeesTable = ({ employeesLits }) => {
             <th scope="col">Country</th>
             <th scope="col">Job</th>
             <th scope="col">Experience</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         {
@@ -23,6 +24,14 @@ const EmployeesTable = ({ employeesLits }) => {
                 <td>{employe.country}</td>
                 <td>{employe.job}</td>
                 <td>{employe.years}</td>
+                <td className="btn-group" role="group">
+                  <button type="button" className="btn btn-info"
+                    onClick={() => handleEdit(employe)}
+                  >
+                    Edit
+                  </button>
+                  <button type="button" className="btn btn-danger">Delete</button>
+                </td>
               </tr>
             </tbody>
           ))
