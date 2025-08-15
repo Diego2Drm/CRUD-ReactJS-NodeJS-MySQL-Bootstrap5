@@ -2,6 +2,7 @@ import Axios from 'axios';
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { EmployeesTable } from "./components/EmployeesTable";
+import Swal from 'sweetalert2';
 
 function App() {
   const [name, setName] = useState('');
@@ -20,8 +21,13 @@ function App() {
       years: years,
     }).then(() => {
       getData();
-      alert("Empleado Registrado!!")
       cleanData();
+      Swal.fire({
+        title: "<strong>Successful Registration</strong>",
+        html: "You added the employee!! <strong>" + name + "</strong>",
+        icon: "success",
+        timer: 3000,
+      });
     });
   }
 
@@ -55,8 +61,13 @@ function App() {
       years: years,
     }).then(() => {
       getData();
-      alert("Empleado Actualizado!!");
       cleanData();
+      Swal.fire({
+        title: "<strong>Successful Update</strong>",
+        html: "You updated the employee!! <strong>" + name + "</strong>",
+        icon: "success",
+        timer: 3000,
+      });
     });
   }
 
