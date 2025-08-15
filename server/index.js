@@ -47,6 +47,27 @@ app.get("/employees", (req, res) => {
     });
 });
 
+// Actualizar Datos
+app.put("/update", (req, res) => {
+  const id = req.body.id
+  const name = req.body.name;
+  const age = req.body.age;
+  const country = req.body.country;
+  const job = req.body.job;
+  const years = req.body.years;
+
+
+  db.query('UPDATE employees SET name=?,age=?,country=?,job=?,years=? WHERE id=?', [name, age, country, job, years, id],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send("Empleado actualizado con éxito!!");
+      }
+    }
+  )
+});
+
 app.listen(3001, () => {
   console.log("listen port 3001");
 
