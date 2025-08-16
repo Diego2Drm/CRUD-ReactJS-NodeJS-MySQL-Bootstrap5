@@ -81,6 +81,37 @@ function App() {
     setId("");
   }
 
+  const deleteEmployee = (val) => {
+    Swal.fire({
+      title: "<strong>Successful Deleted</strong>",
+      html: "Do you want to delete the employee?  <strong>" + val.name + "</strong>",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#d33",
+      confirmButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Axios.delete(`http://localhost:3001/delete/${val.id}`).then(() => {
+          getData();
+          cleanData();
+          Swal.fire(
+            "Deleted",
+            val.name + ' was seleted ',
+            "success"
+          )
+        }).catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops..",
+            html: "<strong>The employee was not eliminated!!</strong>",
+            footer: JSON.parse(JSON.stringify(error)).message === "Network Error" ? "Try later" : JSON.parse(JSON.stringify(error)).message == "Network Error"
+          })
+        })
+      }
+    })
+  }
+
+
   getData();
   return (
     <section className='container p-3'>
@@ -169,10 +200,10 @@ function App() {
 
       </div>
 
-      <EmployeesTable employeesLits={employeesLits} handleEdit={editEmployee} />
+      <EmployeesTable employeesLits={employeesLits} handleEdit={editEmployee} handleDelete={deleteEmployee} />
 
     </section>
   )
-}
 
+}
 export default App

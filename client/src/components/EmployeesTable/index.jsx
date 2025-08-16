@@ -1,5 +1,5 @@
 
-const EmployeesTable = ({ employeesLits, handleEdit }) => {
+const EmployeesTable = ({ employeesLits, handleEdit, handleDelete }) => {
   return (
     <div className="">
       <table className="table table-striped-columns mt-5">
@@ -15,22 +15,26 @@ const EmployeesTable = ({ employeesLits, handleEdit }) => {
           </tr>
         </thead>
         {
-          employeesLits.map((employe, i) => (
+          employeesLits.map((employee, i) => (
             <tbody key={i}>
               <tr>
-                <th>{employe.id}</th>
-                <td>{employe.name}</td>
-                <td>{employe.age}</td>
-                <td>{employe.country}</td>
-                <td>{employe.job}</td>
-                <td>{employe.years}</td>
+                <th>{employee.id}</th>
+                <td>{employee.name}</td>
+                <td>{employee.age}</td>
+                <td>{employee.country}</td>
+                <td>{employee.job}</td>
+                <td>{employee.years}</td>
                 <td className="btn-group" role="group">
                   <button type="button" className="btn btn-info"
-                    onClick={() => handleEdit(employe)}
+                    onClick={() => handleEdit(employee)}
                   >
                     Edit
                   </button>
-                  <button type="button" className="btn btn-danger">Delete</button>
+                  <button type="button" className="btn btn-danger"
+                  onClick={() => handleDelete(employee)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             </tbody>
