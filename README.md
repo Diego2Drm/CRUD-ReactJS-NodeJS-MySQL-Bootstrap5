@@ -46,5 +46,5 @@ npm install cors
 npm install mysql
 ```
 
-![Vista previa](./assets/screenshot.png)
+![Vista Previa](./assets/screenshot.png)
 > Interfaz principal del CRUD de empleados
