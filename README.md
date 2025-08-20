@@ -2,6 +2,8 @@
 
 Este proyecto es un CRUD completo para gestionar empleados, utilizando tecnologías modernas tanto en el frontend como en el backend.
 
+![](./assets/screenshot.png)
+> Interfaz principal del CRUD de empleados
 ---
 
 ## 🧰 Tecnologías utilizadas
@@ -45,6 +47,3 @@ npm install express
 npm install cors
 npm install mysql
 ```
-
-![Vista Previa](./assets/screenshot.png)
-> Interfaz principal del CRUD de empleados
